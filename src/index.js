@@ -13,3 +13,7 @@ ReactDOM.render(
 	</React.StrictMode>,
 	document.getElementById('root')
 );
+
+store.subscribe(() => {
+	console.dir(store.getState());
+});
