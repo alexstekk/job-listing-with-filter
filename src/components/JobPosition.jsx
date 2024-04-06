@@ -3,7 +3,22 @@ import { Badge } from 'UI/Badge';
 import { Card } from 'UI/Card';
 import { Stack } from 'UI/Stack';
 
-const JobPosition = ({ id, company, logo, new: isNew, featured, position, role, level, postedAt, contract, location, languages, tools }) => {
+const JobPosition = ({
+	id,
+	company,
+	logo,
+	new: isNew,
+	featured,
+	position,
+	role,
+	level,
+	postedAt,
+	contract,
+	location,
+	languages,
+	tools,
+	handleAddFilter,
+}) => {
 	const badges = [].concat(role, level, ...languages, ...tools);
 
 	return (
@@ -49,7 +64,12 @@ const JobPosition = ({ id, company, logo, new: isNew, featured, position, role, 
 				</div>
 				<Stack>
 					{badges.map((item) => (
-						<Badge key={item}>{item}</Badge>
+						<Badge
+							onClick={() => handleAddFilter(item)}
+							key={item}
+						>
+							{item}
+						</Badge>
 					))}
 				</Stack>
 			</div>
@@ -73,4 +93,5 @@ JobPosition.propTypes = {
 	location: PropTypes.string,
 	languages: PropTypes.arrayOf(PropTypes.string),
 	tools: PropTypes.arrayOf(PropTypes.string),
+	handleAddFilter: PropTypes.func,
 };
